@@ -1,0 +1,25 @@
+<form class="form-horizontal" #userForm="ngForm">
+<div class="form-group">
+<label>Name</label>
+<input type="text" name="user.name" #userName="ngModel"
+ class="form-control" [(ngModel)]="user.name" required/>
+ <span *ngIf="userName.touched && userName.invalid" 
+ class="text-warning">Name is required.</span>
+</div>
+<div class="form-group">
+<label>MailId</label>
+<input type="text" name="user.mailId" #userMail="ngModel"
+class="form-control" [(ngModel)]="user.mailId" email required/>
+<span *ngIf="userMail.touched && userMail.invalid" 
+class="text-warning">MailId should be in proper format.</span>
+</div>
+<div class="form-group">
+<label>Mobile No.</label>
+<input type="text" name="user.mobile" #userMobile="ngModel"
+class="form-control" [(ngModel)]="user.mobile" pattern="[0-9]{10}" required/>
+<span *ngIf="userMobile.touched && userMobile.invalid" class="text-warning">Mobile no should be numbers max length 10.</span>
+</div>
+<div class="form-group">
+  <button type="button" class="btn btn-primary" (click)="saveForm()">Submit</button>     
+  </div>
+</form>
