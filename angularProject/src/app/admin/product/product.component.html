@@ -1,0 +1,128 @@
+<section id="HomeTags" class="LightGray_sec">
+  <div class="container">
+        <div class="row">
+                <div *ngIf="products.length > 0" class="panel panel-primary" id="result_panel">
+                        <div class="panel-heading">
+                        <h3 class="panel-title">Products</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped table-hover table-products">
+                              <thead>
+                                  <tr>
+                                      <th>Category</th><th>Sub Category</th><th>Product</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let prod of products">
+                                        <td>{{prod.category}}</td><td>{{prod.subCategory}}</td><td>{{prod.product}}</td>
+                                  
+                                  </tr>
+
+                              </tbody>
+                            </table>
+                           
+                        </div>
+                </div> 
+                <h2 *ngIf="products.length == 0" class="Title_section">No products are found.</h2>
+                      
+          </div>   
+
+
+
+
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">New Product</h3>
+                </div>
+                <div class="panel-body">
+                    <form name="productForm"  #productForm="ngForm">
+                        <div class="LoginForm_list">
+                            <ul>
+                                <li>
+                                    <div class="FieldBox">
+                                        <select class="login-Field" id="category" name="model.category" required #category="ngModel"
+                                        [(ngModel)]="model.category" placeholder="Category" (change)="categorySelected()">
+                                            <option [ngValue]="undefined" disabled  selected>Select Category</option>
+                         
+                                            <option *ngFor="let cat of cats" [ngValue]="cat.category">
+                                                {{ cat.category }}
+                                            </option>
+                                        </select>
+                                        <span *ngIf="category.invalid && category.touched" class="text text-danger">Category is required.</span> 
+                                    </div>
+                                </li>
+                                <li>
+                        <div class="FieldBox">
+                         <select class="login-Field" id="subCategory" name="model.subCategory" required #subCategory="ngModel"
+                         [(ngModel)]="model.subCategory" placeholder="Sub Category" (change)="subCategorySelected()">
+                            <option [ngValue]="undefined" disabled  selected>Select Sub Category</option>
+                         
+                            <option *ngFor="let subs of subCats" [ngValue]="subs.subCategory">
+                               {{ subs.subCategory }}
+                            </option>
+                         </select>
+                         <span *ngIf="subCategory.invalid && subCategory.touched" class="text text-danger">Sub Category is required.</span> 
+                       
+                        </div>
+                    </li>
+                    <li>
+                      <div class="FieldBox">
+                          <input type="text" class="login-Field" id="product" name="model.product" 
+                       [(ngModel)]="model.product" #prod="ngModel" placeholder="Product"  required><span class="asterisk_input"></span>
+                       <span *ngIf="prod.invalid && prod.touched" class="text text-danger">Product is required.</span> 
+                        
+                      </div>
+                  </li>
+                   
+                    <li>
+                        <div class="FieldBox textRight">
+                            <input id="prodBtn" name="prodBtn" type="button" value="Add Product" 
+                            class="btn yellowbg black-text pull-right" (click)="addProduct()">
+                           
+                        </div>
+                        
+                    </li>
+                </ul>
+                </div>
+                </form>
+               </div>
+            </div>    
+         </div> 
+         <div class="col-sm-6">
+                <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Bulk Addition</h3>
+                        </div>
+                        <div class="panel-body">
+                         <form name="bulkProductForm"  #bulkProductForm="ngForm">
+                            <div class="LoginForm_list">
+                                <ul>
+                                    <li>
+                                        <div class="FieldBox">
+                        
+                         <input type="file" id="file" #fileToUpload class="form-control" (change)="uploadFileChanged($event.target.files)" 
+                         accept="application/vnd.ms-excel">
+                         <span *ngIf="fileNotSelected" class="text text-danger">No file is selected for uploading.</span> 
+                       
+                      </div>
+                  </li>
+              
+                 
+                  <li>
+                    <button  (click)="uploadProducts()"  class="btn btn-success">Upload Products</button>
+                    &nbsp;
+                    <button  (click)="downloadProducts()"  class="btn btn-warning pull-right">Download Products</button>
+                 
+                      
+                  </li>
+                </ul>
+              </div>
+              </form>
+            </div>
+         </div>     
+       </div>        
+      </div>
+  </div>
+</section>

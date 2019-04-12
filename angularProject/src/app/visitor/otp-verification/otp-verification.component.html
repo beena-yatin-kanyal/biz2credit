@@ -1,0 +1,29 @@
+<h2>Mobile No OTP Verification</h2>
+<form name="verifyOtpForm" #verifyOtpForm="ngForm">
+<div class="LoginForm_list">
+<ul>
+<li>
+    <div class="FieldBox">
+        <input type="text" class="login-Field" id="verification.otp" name="verification.otp" 
+       [(ngModel)]="verification.otp" #otp="ngModel" placeholder="OTP received on your mobile"  required><span class="asterisk_input"></span>
+       <span *ngIf="otp.invalid && otp.touched" class="text text-danger">OTP is required.</span> 
+        
+    </div>
+</li>
+
+
+
+<li>
+    <div class="FieldBox textRight">
+        <input id="reset" name="rset" type="button" value="Verify OTP" 
+        class="btn yellowbg black-text" (click)="verifyOTP()">
+        <countdown-timer (zeroTrigger)="otpElapsed()" [end]="'30:00'"></countdown-timer>
+    </div>
+    
+    
+</li>
+</ul>
+</div>
+</form>
+
+

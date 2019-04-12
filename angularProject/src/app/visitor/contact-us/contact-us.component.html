@@ -1,0 +1,85 @@
+<section id="ContactTags">
+      <div class="container">
+        
+            <h2 class="Title_section TextCenter">Contact<span class="thin_text"> Us</span></h2>
+            <div class="col-sm-6 ContactLeft" data-scroll-reveal="enter left over 1s and move 100px">
+                <form #contactForm="ngForm">
+                <ul class="contactForm">
+                    <li>
+                        <label style="padding-top:0;">Our email ID</label>
+                        <div class="FieldFrom">info.c2cunion@gmail.com</div>
+                    </li>
+                    <li>
+                        <label>Your Name</label>
+                        <div class="FieldFrom">
+                            <input type="text" name="name" value="" class="inputField"
+                             placeholder="Your name..." [(ngModel)]="contact.name" #name="ngModel"
+                              required><span class="asterisk_input"></span>
+                              <span *ngIf="name.invalid && name.touched" class="text text-danger">Name is required.</span> 
+              
+                             
+                        </div>
+                       
+                       
+                    </li>
+                    <li>
+                        <label>Your Email ID</label>
+                        <div class="FieldFrom">
+                            <input type="email" id="email" name="contact.mailId" value="" class="inputField" 
+                            placeholder="Your Email..." [(ngModel)]="contact.mailId" 
+                            #mailId="ngModel" email><span class="asterisk_input"></span>
+                          <span *ngIf="mailId.invalid && mailId.touched" class="text text-danger">MailId should be in proper format.</span>
+         
+                        </div>
+                    </li>
+                    <li>
+                            <label>Your Mobile No.</label>
+                            <div class="FieldFrom">
+                                <input type="text" name="mobile" value="" class="inputField"
+                                 placeholder="Your mobile no..." [(ngModel)]="contact.mobile" #mobile="ngModel"
+                                 pattern="[789][0-9]{9}" required><span class="asterisk_input"></span>
+                                <span *ngIf="mobile.invalid && mobile.touched" class="text text-danger">Mobile No. should start with 7,8 or 9 and must have 10 digits.</span> 
+                  
+                                 
+                            </div>
+                           
+                           
+                        </li>
+                    <li>
+                        <label>Your Message</label>
+                        <div class="FieldFrom">
+                            <textarea name="contact.message" class="inputField" 
+                            placeholder="Your Message..." 
+                            [(ngModel)]="contact.message"></textarea>
+                                      
+                        </div>
+                    </li>
+                    <li>
+                        <label>Verification Code</label>
+                        <div class="FieldFrom">
+                           <botdetect-captcha styleName="angularBasicCaptcha"></botdetect-captcha> <br/>
+                           <input type="text" name="captchaCode" id="captchaCode" value="" class="inputField" placeholder="Captcha code"
+                            [(ngModel)]="contact.captchaCode" #captchaCode="ngModel" required><span class="asterisk_input"></span> 
+                            <br/><br/>
+                            <span *ngIf="captchaCode.invalid && captchaCode.touched" class="text text-danger">Captcha is required.</span> 
+                  
+                        </div>
+                     
+                    </li>
+                    <li class="SumbitFrom">
+                    <button type="button"  class="CommanBtn"
+                    (click)="submitForm()" >Submit</button>
+                    </li>
+                </ul>
+                </form>
+                
+            </div>
+            <div class="col-sm-6" data-scroll-reveal="enter right over 1s and move 100px">
+                <div class="contactMap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0813929797328!2d77.37014291468007!3d28.62732258241979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfaac6634a457%3A0x77f8e79dc5e5c9bc!2sMakeitLive+Media+Pvt.+Ltd.!5e0!3m2!1sen!2sin!4v1518510574492" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+    

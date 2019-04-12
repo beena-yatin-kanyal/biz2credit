@@ -1,0 +1,50 @@
+<header>
+    <!-- to display spinner  -->
+  <ngx-spinner  size="medium" color="#fff"   bdOpacity="0.3" bdColor="#333" type="ball-spin-clockwise-fade-rotating"></ngx-spinner>
+  <ngx-alerts></ngx-alerts><!-- to display alert dialog  -->
+
+    <div class="topHeader">
+        <div class="container">
+            <div class="Logo_bg"><img src="assets/images/header-logo-bg.png" alt="logo"></div>
+            <div class="logo">
+                <a href="#admin"><img src="assets/images/logo.png" alt="logo"></a>
+            </div>
+            <div class="HeaderRight">
+                    <ul class="topSocial">
+                        <li><a href="#" target="_blank" title="Facebook" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" target="_blank" title="Twitter" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                    <app-logout></app-logout>
+            </div>
+        </div>
+        <div class="container">
+                <div class="HeaderRight">
+                    
+                        <span>Welcome, <b>{{userService.currentUser.firstName}} &nbsp; {{userService.currentUser.lastName}}</b></span>
+                              
+                    </div>
+        </div>   
+    </div>
+    <div class="topnavi">
+        <div class="MultiBorder"><span></span></div>
+        <div class="nevigation">
+            <div class="container">
+                <a class="toggleMenu" onclick="$('.nev_menu').toggleClass('ShowDrop');">
+                    <span class="menutext">Menu</span>
+                    <div class="button_res"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>
+                </a>
+                <div class="nev_menu">
+                    <ul>
+                        <li><a href="#" routerLink="/admin">Profile</a></li>
+                        <li><a href="#" routerLink="/admin/category">Categories</a></li>
+                        <li><a href="#" routerLink="/admin/subcategory">SubCategories</a></li>
+                        <li><a href="#" routerLink="/admin/products">Products</a></li>
+                        <li><a href="#" routerLink="/admin/units">Units</a></li>
+                        <li><a href="#" routerLink="/admin/users">Users</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+  

@@ -1,0 +1,92 @@
+<section id="HomeTags" class="LightGray_sec">
+  <div class="container">
+      <div class="row">
+            <div *ngIf="cats.length > 0" class="panel panel-primary" id="result_panel">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Categories</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let cat of cats">{{cat.category}}</li>
+                         </ul>  
+                    </div>
+            </div> 
+            <h2 *ngIf="cats.length == 0" class="Title_section">No categories are found.</h2>
+                  
+      </div>
+   
+           
+      <div class="row">
+          <div class="col-sm-6">
+              
+                <div class="panel panel-primary" id="result_panel">
+                        <div class="panel-heading">
+                        <h3 class="panel-title">New Category</h3>
+                        </div>
+                        <div class="panel-body">
+                          <div class="container-fluid">
+                            <form name="categoryForm"  #categoryForm="ngForm">
+                                <div class="LoginForm_list">
+                                    <ul>
+                                     <li>
+                                        <div class="FieldBox">
+                                            <input type="text" class="login-Field" id="category" name="model.category" 
+                                             [(ngModel)]="model.category" #cat="ngModel" placeholder="Category"  required><span class="asterisk_input"></span>
+                                             <span *ngIf="cat.invalid && cat.touched" class="text text-danger">Category is required.</span> 
+                          
+                                         </div>
+                                     </li>
+                
+                   
+                                        <li>
+                                        <div class="FieldBox textRight">
+                                            <input id="catBtn" name="catBtn" type="button" value="Add Category" 
+                                            class="btn yellowbg black-text pull-right" (click)="addCategory()">
+                           
+                                        </div>
+                        
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div> 
+                </div>               
+        
+
+         <div class="col-sm-6">
+                <div class="panel panel-primary" id="result_panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Bulk Addition</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <form name="bulkCategoryForm"  #bulkCategoryForm="ngForm">
+                                <div class="LoginForm_list">
+                                    <ul>
+                                        <li>
+                                            <div class="FieldBox">
+                                                <input type="file" id="file" #fileToUpload class="form-control" (change)="uploadFileChanged($event.target.files)" 
+                                                accept="application/vnd.ms-excel">
+                                                <span *ngIf="fileNotSelected" class="text text-danger">No file is selected for uploading.</span> 
+                        
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="FieldBox">
+                                                <button  (click)="uploadCategories()"  class="btn btn-success">Upload Categories</button>
+                                                &nbsp;
+                                                <button  (click)="downloadCategories()"  class="btn btn-warning pull-right">Download Categories</button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </form>
+                        </div> 
+                    </div>   
+                </div>  
+            </div>              
+      </div>
+  </div>
+</section>

@@ -1,0 +1,139 @@
+
+   
+
+     
+          
+              <h2>Registration</h2>
+              <h6>Please note <b>ALL</b> fields must be filled out</h6>
+              
+
+        <form name="regiterForn" #signupForm="ngForm">
+            <div class="LoginForm_list">
+                 <ul>
+                    <li>
+              
+                        <div class="FieldBox">
+                            <input type="text" class="login-Field" id="firstName" name="firstName" placeholder="First Name" 
+                            [(ngModel)]="user.firstName" #fname="ngModel" required><span class="asterisk_input"></span>   
+                            <span *ngIf="fname.invalid && fname.touched" class="text text-danger">First Name is required.</span> 
+               
+                        </div>
+                    </li>
+                    <li>
+              
+                        <div class="FieldBox">
+                             <input type="text" class="login-Field" id="lastName" 
+                             name="lastName" placeholder="Last Name" 
+                             [(ngModel)]="user.lastName">
+                 
+                        </div>
+                    </li>
+         
+                    <li>
+              
+                        <div class="FieldBox">
+                            <input type="email" class="login-Field" id="email" 
+                            name="email" [(ngModel)]="user.email" #regMail="ngModel"  placeholder="Email"  email><span class=" asterisk_input"></span>
+                            <span *ngIf="regMail.invalid && regMail.touched" class="text text-danger">Email should be in proper format.</span> 
+               
+                        </div>
+                    </li>
+                    <li>
+              
+                        <div class="FieldBox">
+                            <input type="text" class="login-Field" id="telephone" 
+                            [(ngModel)]="user.telephone" #mobile="ngModel"  name="telephone" placeholder="Mobile" 
+                            pattern="[789][0-9]{9}" required><span class="asterisk_input"></span>
+                            <span *ngIf="mobile.invalid && mobile.touched" class="text text-danger">
+                                    Mobile No. should start with 7,8 or 9 and must have 10 digits. <b</span> 
+               
+                        </div>
+                    </li>
+                    <li>
+              
+                        <div class="FieldBox">
+                            <input type="password" class="login-Field" id="password" 
+                            name="password" [(ngModel)]="user.password" #pass="ngModel" placeholder="Password"  pattern="(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{6,}" required><span class="asterisk_input"></span>
+                            <span *ngIf="pass.invalid && pass.touched" class="text text-danger">
+                                Password should have at least 1 upper case char,<br/>
+                                1 lower case char, 1 digit, and 1 special char. <br/>
+                                Minimum length should be 6 characters.
+                            </span> 
+               
+                        </div>
+                    </li>
+
+                    <li>
+              
+                        <div class="FieldBox">
+                            <input type="password" #cpass class="login-Field" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" (keyup)="0" required><span class="asterisk_input"></span>
+                            <span *ngIf="pass.value != cpass.value" class="text text-danger">Password and Confirm password don't match.</span> 
+                            <span *ngIf="cpass.invalid && cpass.touched" class="text text-danger">
+                                Confirm Password is required.
+                            </span> 
+                        </div>
+                     </li>
+                    <li>
+                        <div class="FieldBox">
+                            <input id="street" type="text" class="login-Field" 
+                            name="street" placeholder="Address" 
+                            [(ngModel)]="user.address" #address="ngModel" >
+                           
+                        </div>
+                    </li>
+                    <li>
+                        <div class="FieldBox">
+                            <input id="location" type="text" class="login-Field" 
+                            name="location" placeholder="Area or Location" 
+                            autocorrect="off" autocapitalize="off" 
+                            spellcheck="off"  #search #loc="ngModel" 
+                            [(ngModel)]="user.location" 
+                            required (change)="onChange(loc.value)"><span class="asterisk_input"></span>
+                            <span *ngIf="loc.invalid && loc.touched" class="text text-danger">Location is required.</span> 
+               
+                        </div>
+                    </li>
+                    <li>
+                        <div class="FieldBox">
+                            <input type="text" class="login-Field" id="city" 
+                            name="city"  [(ngModel)]="user.city" #city="ngModel"  placeholder="City"  required><span class="asterisk_input"></span>
+                            <span *ngIf="city.invalid && city.touched" class="text text-danger">City is required.</span> 
+  
+                        </div>
+                    </li>
+                    <li>
+                        <div class="FieldBox">
+                            <input type="text" class="login-Field" id="state" name="state" 
+                            [(ngModel)]="user.state" #state="ngModel" placeholder="State"  required><span class="asterisk_input"></span>
+                            <span *ngIf="state.invalid && state.touched" class="text text-danger">State is required.</span> 
+  
+                        </div>
+                    </li>
+                    <li>
+                        <div class="FieldBox">
+                            <input type="text" class="login-Field" id="postalCode" 
+                            [(ngModel)]="user.postalCode" #pin="ngModel" name="postalCode" placeholder="Pin Code" pattern="^\d{6}$" required><span class="asterisk_input" ></span>
+                            <span *ngIf="pin.invalid && pin.touched" class="text text-danger">Pin code can contain only 6 digits.</span> 
+  
+                        </div>
+                    </li>
+                    <li>
+                        <div class="FieldBox">
+                            <input type="text" class="login-Field" id="country" 
+                            name="country"  [(ngModel)]="user.country" #country="ngModel" placeholder="Country"  required><span class="asterisk_input"></span>
+                            <span *ngIf="country.invalid && country.touched" class="text text-danger">Country is required.</span> 
+  
+                        </div>
+                    </li>
+          
+                    <li>
+                        <div class="FieldBox textRight">
+                            <input id="register" name="register" type="button" value="Register" 
+                            (click)="submitRegistrationForm()" class="btn greenbg black-text">
+                  
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+     

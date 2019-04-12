@@ -1,0 +1,163 @@
+<section id="HomeTags" class="LightGray_sec">
+  <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                <div *ngIf="reqs.length > 0" class="panel panel-primary" id="result_panel">
+                        <div class="panel-heading">
+                        <h3 class="panel-title">Requirements</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped table-hover table-scroll">
+                              <thead>
+                                  <tr>
+                                      <th>Category</th><th>Sub Category</th><th>Product</th><th>Quantity</th><th>Exp purchase Date</th><th>Seriousness</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let req of reqs">
+                                        <td>{{req.category}}</td><td>{{req.subCategory}}</td><td>{{req.product}}</td><td>{{req.quantity}}&nbsp;{{req.unit}}</td>
+                                        <td>{{req.expectedPurchaseDate}}</td><td>{{req.seriousness}}</td>
+                                  
+                                  </tr>
+
+                              </tbody>
+                            </table>
+                           
+                        </div>
+                </div> 
+                <h2 *ngIf="reqs.length == 0" class="Title_section">No requirements are found.</h2>
+            </div>          
+          </div> 
+    
+    <div class="row">
+          <div class="col-sm-10">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                            <h3 class="panel-title">New Requirement</h3>
+                    </div>
+                    <div class="panel-body">
+                       
+              <form name="requirementForm"  #requirementForm="ngForm">
+                <div class="LoginForm_list">
+                <ul>
+                    <li>
+                        
+                        <div class="FieldBox">
+                         <select class="login-Field" id="category" name="model.category" required #category="ngModel"
+                         [(ngModel)]="model.category" placeholder="Category" (change)="categorySelected()">
+                            <option [ngValue]="undefined" disabled  selected>Select Category</option>
+                            <option *ngFor="let cat of cats" [value]="cat.category">
+                               {{ cat.category }}
+                            </option>
+                         </select>
+                         <span *ngIf="category.invalid && category.touched" class="text text-danger">Category is required.</span> 
+                        
+                        </div>
+                    </li>
+                    <li>
+                        
+                        <div class="FieldBox">
+                         <select class="login-Field" id="subCategory" name="model.subCategory" required #subCategory="ngModel"
+                         [(ngModel)]="model.subCategory" placeholder="Sub Category" (change)="subCategorySelected()" #subcat>
+                            <option [ngValue]="undefined" disabled  selected>Select Sub Category</option>
+                            <option *ngFor="let subs of subCats" [value]="subs.subCategory">
+                               {{ subs.subCategory }}
+                            </option>
+                         </select>
+                         <span *ngIf="subCategory.invalid && subCategory.touched" class="text text-danger">Sub Category is required.</span> 
+                       
+                        </div>
+                    </li>
+                    <li>
+                        
+                        <div class="FieldBox">
+                         <select class="login-Field" id="product" name="model.product" required #product="ngModel"
+                         [(ngModel)]="model.product" placeholder="Product" (change)="productSelected()" >
+                            <option [ngValue]="undefined" disabled  selected>Select Product</option>
+                         
+                            <option *ngFor="let prods of products" [ngValue]="prods.product">
+                               {{ prods.product }}
+                            </option>
+                         </select>
+                         <span *ngIf="product.invalid && product.touched" class="text text-danger">Product is required.</span> 
+                       
+                        </div>
+                    </li>
+                    <li>
+                      
+                      <div class="FieldBox">
+                        <div class="input-group">  
+                          <input type="text" class="login-Field" id="quantity" name="model.quantity" 
+                            [(ngModel)]="model.quantity" #quantity="ngModel" placeholder="Quantity"  required><span class="asterisk_input"></span>
+                            
+                                <span class="input-group-addon">
+                                    <b>{{model.unit}}</b>
+                                </span> 
+                               
+                        </div>
+                        <span *ngIf="quantity.invalid && quantity.touched" class="text text-danger">Quantity is required.</span> 
+                           
+                      </div>   
+                    </li>
+                    <li>
+                    <div class="FieldBox">
+                        <form>
+                            <div class="input-group">
+                                <input class="login-Field" style="float:none" placeholder="Expected purchase date" ngx-mydatepicker name="myDate" readonly 
+                                       [(ngModel)]="myDate"  #expd="ngModel" [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" />
+                                <span class="asterisk_input"></span>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" (click)="dp.clearDate()">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </button>
+                                    <button type="button" class="login-Field btn btn-default" (click)="dp.toggleCalendar()">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                               
+                            </div>
+                        </form>
+                           <span *ngIf="dateNotValid" class="text text-danger">Expected purchase date is required.</span> 
+                     </div>
+                    </li>
+                    <li>
+                        <div class="FieldBox">
+                         <select class="login-Field" id="seriousness" name="model.seriousness" required #seriousness="ngModel"
+                         [(ngModel)]="model.seriousness"  (change)="seriousnessSelected()">
+                            <option [ngValue]="undefined" disabled  selected>How serious you are to purchase the product</option>
+                            <option  value="Determined">Determined</option>
+                            <option  value="Actively looking for a good deal">Actively looking for a good deal</option>
+                            <option  value="Planning">Planning</option>
+                            <option  value="Just started searching">Just started searching</option>
+                         </select>
+                         <span *ngIf="seriousness.invalid && seriousness.touched" class="text text-danger">Select your seriousness.</span> 
+                       
+                        </div>
+                    </li>
+                    <li>
+                       
+                        <div class="FieldFrom">
+                            <textarea name="model.otherDetails" class="inputField" 
+                            placeholder="other details of the product..." 
+                            [(ngModel)]="model.otherDetails"></textarea>
+                                      
+                        </div>
+                    </li>
+                    <li>
+                        <div class="FieldBox textRight">
+                            <input id="unitBtn" name="unitBtn" type="button" value="Add Requirement" 
+                            class="btn yellowbg black-text pull-right" (click)="addRequirement()">
+                           
+                        </div>
+                        
+                    </li>
+                </ul>
+                </div>
+                </form>
+               </div>
+            </div>    
+         </div> 
+                
+      </div>
+  </div>
+</section>

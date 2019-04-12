@@ -1,0 +1,41 @@
+<header>
+    <div class="topHeader">
+        <div class="container">
+            <div class="Logo_bg"><img src="assets/images/header-logo-bg.png" alt="logo"></div>
+            <div class="logo">
+                <a href="#visitor"><img src="assets/images/logo.png" alt="logo"></a>
+            </div>
+            <div class="HeaderRight">
+                    <ul class="topSocial">
+                        <li><a href="#" target="_blank" title="Facebook" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" target="_blank" title="Twitter" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                    <div class="LoginBtn_top">
+                        <a href="#" routerLink="login-register" class="Login">Login / Register</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="topnavi">
+        <div class="MultiBorder"><span></span></div>
+        <div class="nevigation">
+            <div class="container">
+                <a class="toggleMenu" onclick="$('.nev_menu').toggleClass('ShowDrop');">
+                    <span class="menutext">Menu</span>
+                    <div class="button_res"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>
+                </a>
+                <div class="nev_menu">
+                    <ul>
+                        <li><a href="#HomeTags" routerLink="home">Home</a></li>
+                        <li><a href="#HowWorksTags" routerLink="howItWorks">How it Works</a></li>
+                        <li><a href="#FAQTags" routerLink="faq">FAQs</a></li>
+                        <li><a href="#ContactTags" routerLink="contactUs">Contact Us </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+   <!-- to display spinner  -->
+   <ngx-spinner  size="medium" color="#fff"   bdOpacity="0.3" bdColor="#333" type="ball-spin-clockwise-fade-rotating"></ngx-spinner>
+   <ngx-alerts></ngx-alerts><!-- to display alert dialog  -->

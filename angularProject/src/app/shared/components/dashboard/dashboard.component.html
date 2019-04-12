@@ -1,0 +1,148 @@
+<section class="LoginWrapp">
+        <div class="container"> 
+                   
+    
+           <div class="loginBox" >
+              
+                  <h2>Your Profile</h2>
+                  
+                  
+    
+            <form name="profileForn" #profileForm="ngForm">
+                <div class="LoginForm_list">
+                     <ul>
+                        <li>
+                  
+                            <div class="FieldBox">
+                                <label>First Name:</label>
+                                <input type="text" class="login-Field" id="firstName" name="firstName" placeholder="First Name" 
+                                [(ngModel)]="user.firstName" #fname="ngModel" required
+                                [readOnly]="!isEditing"><span *ngIf="isEditing" class="asterisk_input"></span>   
+                                <span *ngIf="fname.invalid && fname.touched" class="text text-danger">First Name is required.</span> 
+                   
+                            </div>
+                        </li>
+                        <li>
+                  
+                            <div class="FieldBox">
+                                 <label>Last Name:</label>
+                                 <input type="text" class="login-Field" id="lastName" 
+                                 name="lastName" placeholder="Last Name" [readOnly]="!isEditing"
+                                 [(ngModel)]="user.lastName">
+                     
+                            </div>
+                        </li>
+             
+                        <li>
+                  
+                            <div class="FieldBox">
+                                <label>Email:</label>
+                                <input type="email" class="login-Field" id="email" [readOnly]="!isEditing"
+                                name="email" [(ngModel)]="user.email" #regMail="ngModel"  placeholder="Email"  email><span *ngIf="isEditing" class=" asterisk_input"></span>
+                                <span *ngIf="regMail.invalid && regMail.touched" class="text text-danger">Email should be in proper format.</span> 
+                   
+                            </div>
+                        </li>
+                        <li>
+                  
+                            <div class="FieldBox">
+                                 <label>Mobile:</label>
+                                <input type="text" class="login-Field" id="telephone" 
+                                [(ngModel)]="user.telephone" #mobile="ngModel"  name="telephone" placeholder="Mobile" 
+                                [readOnly]="!isEditing"
+                                pattern="[789][0-9]{9}" required><span *ngIf="isEditing" class="asterisk_input"></span>
+                                <span *ngIf="mobile.invalid && mobile.touched" class="text text-danger">
+                                        Mobile No. should start with 7,8 or 9 and must have 10 digits. <b</span> 
+                   
+                            </div>
+                        </li>
+                        
+    
+                        <li>
+                            <div class="FieldBox">
+                                <label>Address:</label>
+                                <input id="street" type="text" class="login-Field" 
+                                name="street" placeholder="Address" [readOnly]="!isEditing"
+                                [(ngModel)]="user.address" #address="ngModel" >
+                               
+                            </div>
+                        </li>
+                        <li>
+                            <div class="FieldBox">
+                                <label>Area or Location:</label>
+                                <input id="location" type="text" class="login-Field" 
+                                name="location" placeholder="Area or Location" [readOnly]="!isEditing"
+                                autocorrect="off" autocapitalize="off" spellcheck="off"  #search #loc="ngModel" 
+                                [(ngModel)]="user.location" required (change)="onChange(loc.value)"><span *ngIf="isEditing" class="asterisk_input"></span>
+                                <span *ngIf="loc.invalid && loc.touched" class="text text-danger">Location is required.</span> 
+                   
+                            </div>
+                        </li>
+                        <li>
+                            <div class="FieldBox">
+                                <label>City:</label>
+                                <input type="text" class="login-Field" id="city" [readOnly]="!isEditing"
+                                name="city"  [(ngModel)]="user.city" #city="ngModel"  placeholder="City"  required><span *ngIf="isEditing" class="asterisk_input"></span>
+                                <span *ngIf="city.invalid && city.touched" class="text text-danger">City is required.</span> 
+      
+                            </div>
+                        </li>
+                        <li>
+                            <div class="FieldBox">
+                                <label>State:</label>
+                                <input type="text" class="login-Field" id="state" name="state" 
+                                [readOnly]="!isEditing"
+                                [(ngModel)]="user.state" #state="ngModel" placeholder="State"  required><span *ngIf="isEditing" class="asterisk_input"></span>
+                                <span *ngIf="state.invalid && state.touched" class="text text-danger">State is required.</span> 
+      
+                            </div>
+                        </li>
+                        <li>
+                            <div class="FieldBox">
+                                <label>Postal Code:</label>
+                                <input type="text" class="login-Field" id="postalCode" 
+                                [readOnly]="!isEditing"
+                                [(ngModel)]="user.postalCode" #pin="ngModel" name="postalCode" placeholder="Pin Code" pattern="^\d{6}$" required><span *ngIf="isEditing" class="asterisk_input" ></span>
+                                <span *ngIf="pin.invalid && pin.touched" class="text text-danger">Pin code can contain only 6 digits.</span> 
+      
+                            </div>
+                        </li>
+                        <li>
+                            <div class="FieldBox">
+                                <label>Country:</label>
+                                <input type="text" class="login-Field" id="country" 
+                                [readOnly]="!isEditing"
+                                name="country"  [(ngModel)]="user.country" #country="ngModel" placeholder="Country"  required><span *ngIf="isEditing" class="asterisk_input"></span>
+                                <span *ngIf="country.invalid && country.touched" class="text text-danger">Country is required.</span> 
+      
+                            </div>
+                        </li>
+              
+                        <li>
+                            <div class="FieldBox textRight">
+                                <input id="edit" name="edit" type="button" value="Edit" 
+                                *ngIf="!isEditing"
+                                (click)="enableEdit()" class="btn greenbg black-text">
+                                <input id="edit" name="edit" type="button" value="Update" 
+                                *ngIf="isEditing"
+                                (click)="updateProfile()" class="btn greenbg black-text">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+            </div>
+    
+           <div class="registrationBox">
+            <div style="float:right;">
+                <img src="{{user.profileImageUrl}}" alt="..." class="rounded float-right img-thumbnail"
+                width="200px;" height="300px;">
+                <p style="padding-left:50px;">Profile Image</p>
+    
+            </div>
+                <input type="file" id="file" #fileToUpload class="form-control" (change)="uploadFileChanged($event.target.files)" 
+                accept="image/*">
+           </div> 
+        </div>    
+    </section>
+    

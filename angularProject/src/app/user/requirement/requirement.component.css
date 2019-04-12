@@ -1,0 +1,7 @@
+.table-scroll{
+    width: 92%;
+    max-height: 150px;
+    overflow-y: scroll;
+    display:inline-block;
+}
+

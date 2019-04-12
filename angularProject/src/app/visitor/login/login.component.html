@@ -1,0 +1,41 @@
+
+<h2>Log In</h2>
+<form name="loginForn"  #loginForm="ngForm">
+<div class="LoginForm_list">
+<ul>
+    <li>
+        <div class="FieldBox">
+            <input type="text" class="login-Field" id="userName" name="login.email" 
+           [(ngModel)]="login.email" #loginMail="ngModel" placeholder="Email or Mobile"  required><span class="asterisk_input"></span>
+           <span *ngIf="loginMail.invalid && loginMail.touched" class="text text-danger">MailId or Mobile No. is required.</span> 
+         
+            
+        </div>
+    </li>
+
+    <li>
+        <div class="FieldBox">
+            <input type="password" class="login-Field" 
+            [(ngModel)]="login.password" #loginPass="ngModel"  name="login.password" placeholder="Password" required><span class="asterisk_input"></span>
+            <span *ngIf="loginPass.invalid && loginPass.touched" class="text text-danger">Password is required.</span> 
+         
+        </div>
+    </li>
+    <li>
+        <div class="FieldBox textRight">
+             <a href="#"  class="btn btn-link forgotPassword"  (click)="forgotLinkClicked()"   [routerLink]="['/visitor/login-register',{ outlets: { loginsection: 'forgotPassword' } }]">Forgot Password</a>
+        </div>
+    </li>
+    <li>
+        <div class="FieldBox textRight">
+            <input id="login" name="login" type="button" value="Login" 
+            class="btn yellowbg black-text" (click)="submitLoginForm()">
+           
+        </div>
+        
+        
+    </li>
+</ul>
+</div>
+</form>
+

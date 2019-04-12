@@ -1,0 +1,99 @@
+<section id="HomeTags" class="LightGray_sec">
+  <div class="container">
+        <div class="row" *ngIf="reqs.length > 1">
+            <div class="col-sm-5 col-sm-offset-1" >
+                <h2>Search by Product</h2> 
+            </div> 
+            <div class="col-sm-3" >
+                <br/>
+                <select class="form-control" [(ngModel)]="model.criteria">
+                    <option *ngFor="let req of reqs" value="{{req.product}}">{{req.product}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2" >
+                <br/>
+                <button type="button" class="btn btn-primary" (click)="searchByProduct(req)">Go</button>
+               </div> 
+            <div class="col-sm-1" >
+                <br/>
+                <button type="button" class="btn btn-link" (click)="toggleAdvanceSearch()" [ngClass]="{hidden : advance}">Advance Search</button>
+                <button type="button" class="btn btn-link" (click)="toggleAdvanceSearch()" [ngClass]="{hidden : !advance}">Normal Search</button>
+                
+            </div> 
+        </div> 
+        <div class="row" *ngIf="advance">
+            <div class="col-sm-5 col-sm-offset-1" >
+                <h2>Search by Category</h2> 
+            </div> 
+            <div class="col-sm-3" >
+                <br/>
+                <select class="form-control" [(ngModel)]="model.criteria">
+                    <option *ngFor="let cat of cats" value="{{cat}}">{{cat}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2" >
+                <br/>
+                <button type="button" class="btn btn-primary" (click)="searchByCategory(req)">Go</button>
+                
+            </div> 
+            
+        </div>  
+        <div class="row" *ngIf="advance">
+            <div class="col-sm-5 col-sm-offset-1" >
+                <h2>Search by SubCategory</h2> 
+            </div> 
+            <div class="col-sm-3" >
+                <br/>
+                <select class="form-control" [(ngModel)]="model.criteria">
+                    <option *ngFor="let subcat of subcats" value="{{subcat}}">{{subcat}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2" >
+                <br/>
+                <button type="button" class="btn btn-primary" (click)="searchBySubcategory(req)">Go</button>
+                
+            </div> 
+            
+        </div>            
+        <div class="row" *ngIf="reqs.length == 0">
+              <h2 class="Title_section">Post some requirements to perform search.</h2>
+        </div>    
+    
+          <div class="row" *ngIf="showResult">
+              <div class="col-sm-12">
+                  <div *ngIf="searchResult.length > 0" class="panel panel-primary" id="result_panel">
+                          <div class="panel-heading">
+                          <h3 class="panel-title">Users interested in {{model.criteria}} in your near by locations are: </h3>
+                          </div>
+                          <div class="panel-body">
+  
+                              <table class="table table-bordered table-striped table-hover table-scroll">
+                                <thead>
+                                    <tr><th>Product</th>
+                                        <th>Quantity</th><th>Unit</th><th>Exp purchase Date</th><th>Seriousness</th>
+                                        <th>Name</th><th>Email</th><th>Mobile</th><th>Address</th>
+                                        <th>Location</th><th>City</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let result of searchResult">
+                                          <td>{{result.product}}</td>
+                                          <td>{{result.quantity}}</td><td>{{result.unit}}</td>
+                                          <td>{{result.expectedPurchaseDate}}</td><td>{{result.seriousness}}</td>
+                                          <td>{{result.firstName}} &nbsp; {{result.lastName}}</td><td>{{result.email}}</td>
+                                          <td>{{result.mobile}}</td><td>{{result.address}}</td>
+                                          <td>{{result.location}}</td><td>{{result.city}}</td>
+                                    </tr>
+                                    
+                                </tbody>
+                              </table>
+                             
+                          </div>
+                       
+                  </div> 
+                  <h2 *ngIf="searchResult.length == 0" class="Title_section">No matching requirement is found.</h2>
+              </div>          
+            </div> 
+      
+  </div>
+</section>

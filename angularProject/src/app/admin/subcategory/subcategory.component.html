@@ -1,0 +1,104 @@
+<section id="HomeTags" class="LightGray_sec">
+  <div class="container">
+        <div class="row">
+            <div *ngIf="subcats.length > 0" class="panel panel-primary" id="result_panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sub Categories</h3>
+                    </div>
+                    <div class="panel-body">
+                            <table class="table table-bordered table-striped table-hover table-subcats">
+                                <thead>
+                                    <tr>
+                                      <th>Category</th><th>Sub Category</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sub of subcats">
+                                        <td>{{sub.category}}</td><td>{{sub.subCategory}}</td>
+                                  
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+            </div> 
+                <h2 *ngIf="subcats.length == 0" class="Title_section">No sub categories are found.</h2>
+        </div>   
+    
+    
+        <div class="row">
+            <div class="col-sm-6" >
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">New SubCategory</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form name="categoryForm"  #subCategoryForm="ngForm">
+                            <div class="LoginForm_list">
+                                <ul>
+                                    <li>
+                                        <div class="FieldBox">
+                                            <select class="login-Field" id="category" name="model.category" required #category="ngModel"
+                                            [(ngModel)]="model.category" (change)="categorySelected()">
+                                                <option [ngValue]="undefined" disabled  selected>Select Category</option>
+                                                <option *ngFor="let cat of cats" [ngValue]="cat.category">
+                                                {{cat.category}}
+                                                </option>
+                                            </select>
+                                            <span *ngIf="category.invalid && category.touched" class="text text-danger">Category is required.</span> 
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="FieldBox">
+                                            <input type="text" class="login-Field" id="subCategory" name="model.subCategory" 
+                                            [(ngModel)]="model.subCategory" #sub="ngModel" placeholder="Sub Category"  required><span class="asterisk_input"></span>
+                                            <span *ngIf="sub.invalid && sub.touched" class="text text-danger">Sub Category is required.</span> 
+                        
+                                        </div>
+                                    </li>
+                   
+                                    <li>
+                                        <div class="FieldBox textRight">
+                                            <input id="catBtn" name="catBtn" type="button" value="Add SubCategory" 
+                                            class="btn yellowbg black-text pull-right" (click)="addSubCategory()">
+                           
+                                        </div>
+                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>        
+         </div> 
+         <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Bulk Addition</h3>
+                </div>
+                <div class="panel-body">
+                    <form name="bulkSubCategoryForm"  #bulkSubCategoryForm="ngForm">
+                        <div class="LoginForm_list">
+                            <ul>
+                                <li>
+                                    <div class="FieldBox">
+                                        <input type="file" id="file" #fileToUpload class="form-control" (change)="uploadFileChanged($event.target.files)" 
+                                        accept="application/vnd.ms-excel">
+                                        <span *ngIf="fileNotSelected" class="text text-danger">No file is selected for uploading.</span> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="FieldBox textRight">
+                                        <button  (click)="uploadSubCategories()"  class="btn btn-success">Upload Subcategories</button>
+                                        &nbsp;
+                                        <button  (click)="downloadSubCategories()"  class="btn btn-warning pull-right">Download Subcategories</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>  
+            </div>          
+      </div>
+    </div>
+    </div>
+</section>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>C2cunion</title>
+  <base href="/api">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  
+      <app-root></app-root>
+ 
+  
+</body>
+<script>
+    $('.accordion_list h4').click(function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        $this.addClass('active');
+        $('.accordion_list h4').removeClass('active');
+        $this.addClass('active');
+        if ($this.next().hasClass('shows')) {
+            $this.next().removeClass('shows');
+            $('.accordion_list h4').removeClass('active');;
+        } else {
+            $this.parent().parent().find('.accordion_inner').removeClass('shows');
+            $this.parent().parent().find('.accordion_inner').slideUp(350);
+            $this.next().toggleClass('shows');
+        }
+    });
+</script>
+<script>
+    $(window).scroll(function () {
+        var sticky = $('.topnavi'),
+            scroll = $(window).scrollTop();
+
+        if (scroll >= 218) sticky.addClass('fixed_navi');
+        else sticky.removeClass('fixed_navi');
+    });
+</script>
+<!---Item slide---->
+<script src="assets/Scripts/scrollReveal.js"></script>
+<script>
+    (function ($) {
+        'use strict';
+        window.scrollReveal = new scrollReveal({ reset: true, move: '50px' });
+    })();
+</script>
+<script type="text/javascript" src="assets/Scripts/jquery.singlePageNav.js"></script>
+<script>
+
+    // Prevent console.log from generating errors in IE for the purposes of the demo
+    if (!window.console) console = { log: function () { } };
+
+    // The actual plugin
+    $('.nevigation').singlePageNav({
+        offset: $('.nevigation').outerHeight(),
+        filter: ':not(.external)',
+        updateHash: true,
+        beforeStart: function () {
+            console.log('begin scrolling');
+        },
+        onComplete: function () {
+            console.log('done scrolling');
+        }
+    });
+</script>
+</html>
